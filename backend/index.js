@@ -5,10 +5,10 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-const { HoldingsModel } = require("./Model/HoldingsModel");
-const { PositionsModel } = require("./Model/PositionsModel");
-const { OrdersModel } = require("./Model/OrdersModel");
-const { UsersModel } = require("./Model/UsersModel");
+const { HoldingsModel } = require("./model/HoldingsModel");
+const { PositionsModel } = require("./model/PositionsModel");
+const { OrdersModel } = require("./model/OrdersModel");
+const { UsersModel } = require("./model/UsersModel");
 const { authMiddleware } = require("./middleware/AuthMiddleware");
 
 const bcrypt = require("bcrypt");
@@ -374,9 +374,11 @@ app.post("/login", async (req, res) => {
     JWT_SECRET,
   );
   //cookie
+
   res.cookie("token", token, {
     httpOnly: true,
-    sameSite: "lax",
+    secure: true,
+    sameSite: "none",
   });
   // Send token to frontend
   return res.json({
@@ -395,7 +397,8 @@ app.post("/logout", (req, res) => {
 
   res.clearCookie("token", {
     httpOnly: true,
-    sameSite: "lax",
+    secure: true,
+    sameSite: "none",
   });
 
   return res.json({
@@ -403,8 +406,12 @@ app.post("/logout", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.error("App Started... :)");
-  mongoose.connect(MONGO_URL);
-  console.error("Db connected... :)");
+app.listen(PORT, async () => {
+  try {
+    await mongoose.connect(MONGO_URL);
+    console.log(`Server started on port ${PORT}`);
+    console.log("MongoDB Connected");
+  } catch (err) {
+    console.error("MongoDB Connection Error:", err);
+  }
 });

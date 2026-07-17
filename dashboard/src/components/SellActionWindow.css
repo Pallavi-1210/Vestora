@@ -1,0 +1,118 @@
+.container {
+  --radius: 16px;
+  width: 380px;
+  height: auto;
+  background: #ffffff;
+  position: fixed;
+  bottom: 40px;
+  left: calc(32% + 40px);
+  box-sizing: border-box;
+  z-index: 1000;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color, #e5e7eb);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dragging {
+  opacity: 0.5;
+}
+
+/* REGULAR ORDER inputs wrapper */
+.regular-order {
+  padding: 0;
+  background-color: transparent;
+}
+
+/* INPUTS fieldset layout */
+.inputs {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.inputs fieldset {
+  flex: 1;
+  box-sizing: border-box;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 8px;
+  margin: 0;
+  padding: 4px 12px;
+  transition: all 0.2s ease;
+  background-color: var(--surface-card, #f8fafc);
+}
+
+.inputs fieldset:focus-within {
+  border-color: var(--loss-red, #ef4444);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.inputs fieldset legend {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary-text-muted, #64748b);
+  padding: 0 4px;
+}
+
+.inputs fieldset input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  height: 36px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  color: var(--primary-text, #1a1f2e);
+}
+
+.inputs fieldset input:focus {
+  outline: none;
+}
+
+.inputs fieldset input:disabled {
+  cursor: not-allowed;
+}
+
+/* BUTTONS section */
+.buttons {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0;
+  margin: 0;
+  gap: 8px;
+}
+
+/* BUTTON STYLES overrides for Sell window */
+#buy-window .btn-blue {
+  background: var(--loss-red, #ef4444) !important;
+  color: #ffffff !important;
+  font-weight: 700;
+  border: 1px solid var(--loss-red, #ef4444);
+}
+
+#buy-window .btn-blue:hover {
+  background: var(--loss-red-hover, #dc2626) !important;
+  border-color: var(--loss-red-hover, #dc2626);
+  transform: translateY(-1px);
+}
+
+#buy-window .btn-grey {
+  background: var(--surface-card, #f8fafc) !important;
+  color: var(--primary-text-muted, #64748b) !important;
+  border: 1px solid var(--border-color, #e5e7eb);
+  font-weight: 600;
+}
+
+#buy-window .btn-grey:hover {
+  background: var(--surface-card-hover, #f1f5f9) !important;
+  color: var(--primary-text, #1a1f2e) !important;
+}

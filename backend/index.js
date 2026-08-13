@@ -201,6 +201,9 @@ const JWT_SECRET = process.env.JWT_SECRET;
 //   await PositionsModel.deleteMany({});
 //   res.send("All positions deleted");
 // });
+app.get("/", (req, res) => {
+  res.send("Vestora Backend is running successfully!");
+});
 
 app.get("/allHoldings", authMiddleware, async (req, res) => {
   let allHoldings = await HoldingsModel.find({});
